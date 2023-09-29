@@ -20,16 +20,18 @@ import team.gif.robot.subsystems.driver.Pigeon;
  * project.
  */
 public class Robot extends TimedRobot {
-  private Command m_autonomousCommand;
+  private static Command autonomousCommand;
+  private RobotContainer robotContainer;
+  public static OI oi;
 
-  private RobotContainer m_robotContainer;
+
+  public static UiSmartDashboard uiSmartDashboard;
 
   public static CIMotor ciMotor;
   public static NeoMotor neo;
   public static LimitSwitch limitSwitch;
   public static Pigeon pigeon;
 
-  public static OI oi;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -37,9 +39,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    oi = new OI();
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    m_robotContainer = new RobotContainer();
 
     neo = new NeoMotor();
 
@@ -50,7 +52,7 @@ public class Robot extends TimedRobot {
 
     pigeon = new Pigeon(RobotMap.PIGEON);
 
-    oi = new OI();
+    robotContainer = new RobotContainer();
   }
 
   /**
@@ -69,6 +71,9 @@ public class Robot extends TimedRobot {
     System.out.println("Limit Switch: " + limitSwitch.getLimitSwitchState()); //req 1
     System.out.println("Pigeon Heading: " + pigeon.getCompassHeading()); //req 2
     CommandScheduler.getInstance().run();
+
+    uiSmartDashboard.updateUI();
+
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -80,14 +85,7 @@ public class Robot extends TimedRobot {
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
-  public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
-    // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
-  }
+  public void autonomousInit() {}
 
   /** This function is called periodically during autonomous. */
   @Override
@@ -99,8 +97,8 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
+    if (autonomousCommand != null) {
+      autonomousCommand.cancel();
     }
   }
 
