@@ -16,7 +16,7 @@ public class JoystickControl extends CommandBase {
     // Called every time the scheduler runs (~20ms) while the command is scheduled
     @Override
     public void execute() {
-        double forwardAndBackward = Robot.oi.driver.getLeftY();
+        double forwardAndBackward = -Robot.oi.driver.getLeftY();
         if (Robot.limitSwitch.getLimitSwitchState()) { //req 9
             forwardAndBackward /= 2;
         }

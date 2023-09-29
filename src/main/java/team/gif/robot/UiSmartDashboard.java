@@ -18,6 +18,10 @@ public class UiSmartDashboard {
      */
     public UiSmartDashboard() {
         ShuffleboardTab tab = Shuffleboard.getTab("SmartDashboard"); // Gets a reference to the shuffleboard tab
+
+        tab.addBoolean("Limit Switch", Robot.limitSwitch::getLimitSwitchState); //req 7
+
+        tab.add("Pigeon Heading", (x)->{x.setSmartDashboardType("Gyro");x.addDoubleProperty("Value", ()-> Robot.pigeon.getCompassHeading(),null);}); //req 8
     }
 
     /**

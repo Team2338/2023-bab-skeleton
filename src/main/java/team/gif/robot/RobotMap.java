@@ -10,6 +10,5 @@ public abstract class RobotMap {
     public static final int CIMOTOR = 12;
     public static final int NEOMOTOR = 9;
 
-    public static final int LIMITSWITCH = 3;
-    public static final int PIGEON = 12;
+    public static final int LIMITSWITCH = 0;
 }

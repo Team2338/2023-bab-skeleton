@@ -18,6 +18,8 @@ public class NeoMotor extends SubsystemBase {
         neo.restoreFactoryDefaults();
         neo.setInverted(true);
         neo.setIdleMode(CANSparkMax.IdleMode.kBrake);
+        neoPID.setP(.0004);
+        neoPID.setFF(.000280);
     }
 
     /**
