@@ -18,7 +18,7 @@ Param 1: Run CIM in Brake mode
 ### Basic
 Req 1: All: Display state of Limit Switch Sensor to console (not pressed = false, pressed = true)
 
-Req 2: All: Read pigeon heading, and display the heading on shuffleboard
+Req 2: All: Read pigeon heading, and display the heading on console
 
 Req 3: Teleop: Hold B - run CIM at 20% power forward
 

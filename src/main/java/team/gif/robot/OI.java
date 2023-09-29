@@ -2,6 +2,9 @@ package team.gif.robot;
 
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import team.gif.robot.commands.cim.CIM20Percent;
+import team.gif.robot.commands.cim.CIM20PercentReverse;
+import team.gif.robot.commands.neo.RunNEO;
 
 public class OI {
     /*
@@ -86,5 +89,9 @@ public class OI {
          * Simple Test:
          *   aX.onTrue(new PrintCommand("aX"));
          */
+
+        dB.whileTrue(new CIM20Percent()); //req 3
+        dX.whileTrue(new CIM20PercentReverse()); //req 4
+        dY.whileTrue(new RunNEO()); //req 6
     }
 }

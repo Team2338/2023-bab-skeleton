@@ -1,13 +1,12 @@
-package team.gif.robot.commands;
+package team.gif.robot.commands.neo;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import team.gif.robot.subsystems.ExampleSubsystem;
+import team.gif.robot.Robot;
 
-public class CommandTemplate extends CommandBase {
-
-    public CommandTemplate(ExampleSubsystem m_exampleSubsystem) {
+public class NEO60RPM extends CommandBase {
+    public NEO60RPM() {
         super();
-        //addRequirements(Robot.climber); // uncomment
+        addRequirements(Robot.neo);
     }
 
     // Called when the command is initially scheduled.
@@ -16,7 +15,9 @@ public class CommandTemplate extends CommandBase {
 
     // Called every time the scheduler runs (~20ms) while the command is scheduled
     @Override
-    public void execute() {}
+    public void execute() {
+        Robot.neo.setSpeedVoltage(2.5);
+    }
 
     // Return true when the command should end, false if it should continue. Runs every ~20ms.
     @Override
@@ -26,5 +27,7 @@ public class CommandTemplate extends CommandBase {
 
     // Called when the command ends or is interrupted.
     @Override
-    public void end(boolean interrupted) {}
+    public void end(boolean interrupted) {
+        Robot.neo.setSpeedVoltage(0);
+    }
 }

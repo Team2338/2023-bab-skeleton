@@ -18,5 +18,8 @@ public class UI {
     public UI() {
         ShuffleboardTab shuffleboardTab = Shuffleboard.getTab("BAB");
 
+        shuffleboardTab.addBoolean("Limit Switch", Robot.limitSwitch::getLimitSwitchState); //req 7
+
+        shuffleboardTab.add("Pigeon Heading", (x)->{x.setSmartDashboardType("Gyro");x.addDoubleProperty("Value", ()-> Robot.pigeon.getCompassHeading(),null);}); //req 8
     }
 }
