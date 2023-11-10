@@ -7,6 +7,11 @@ package team.gif.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import team.gif.lib.logging.EventFileLogger;
+import team.gif.lib.logging.TelemetryFileLogger;
+import team.gif.robot.commands.drivetrain.DriveSwerve;
+import team.gif.robot.subsystems.SwerveDrivetrain;
+import team.gif.robot.subsystems.driver.Pigeon;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -17,9 +22,13 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends TimedRobot {
   private static Command autonomousCommand;
   private RobotContainer robotContainer;
+  private static TelemetryFileLogger telemetryLogger;
+  public static EventFileLogger eventLogger;
   public static OI oi;
 
-
+  public static Pigeon pigeon;
+  public static SwerveDrivetrain swervetrain;
+  public static DriveSwerve driveSwerve;
   public static UiSmartDashboard uiSmartDashboard;
 
   /**
@@ -33,6 +42,11 @@ public class Robot extends TimedRobot {
     robotContainer = new RobotContainer();
     oi = new OI();
     uiSmartDashboard = new UiSmartDashboard();
+    pigeon = new Pigeon(RobotMap.PIGEON);
+    swervetrain = new SwerveDrivetrain();
+    driveSwerve = new DriveSwerve();
+    swervetrain.setDefaultCommand(driveSwerve);
+    swervetrain.resetHeading();
   }
 
   /**
